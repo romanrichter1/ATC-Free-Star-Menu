@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Star Autocamp – Menu</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --ivory:#F5F0E8;
+  --ivory-dark:#EDE5D4;
+  --green-deep:#2A3D2E;
+  --green-mid:#3D5C42;
+  --green-light:#5A7A5E;
+  --gold:#B8974A;
+  --water:#8FA89A;
+  --text-dark:#1E2B20;
+  --text-mid:#4A5E4D;
+  --text-light:#7A8F7D;
+}
+body{background:var(--ivory);font-family:'Jost',sans-serif;color:var(--text-dark);min-height:100vh;}
+.header{background:var(--green-deep);padding:2.5rem 2rem 2rem;text-align:center;position:relative;}
+.header::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.header-ornament{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:0.75rem;}
+.ornament-line{width:60px;height:0.5px;background:var(--gold);opacity:0.7;}
+.ornament-diamond{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+.header h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:var(--ivory);letter-spacing:6px;text-transform:uppercase;}
+.header p{font-size:11px;font-weight:300;color:var(--water);letter-spacing:4px;text-transform:uppercase;margin-top:6px;}
+.tabs{display:flex;background:var(--green-deep);border-top:0.5px solid rgba(255,255,255,0.08);}
+.tab{flex:1;padding:14px 8px;text-align:center;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;color:var(--water);border-bottom:2px solid transparent;transition:all 0.2s;}
+.tab.active{color:var(--ivory);border-bottom:2px solid var(--gold);}
+.tab:hover:not(.active){color:var(--ivory-dark);}
+.content{padding:2rem 1.75rem;max-width:680px;margin:0 auto;}
+.section{display:none;}
+.section.active{display:block;}
+.cat-header{display:flex;align-items:center;gap:12px;margin:2rem 0 1rem;}
+.cat-header:first-child{margin-top:0;}
+.cat-label{font-size:10px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--green-light);}
+.cat-line{flex:1;height:0.5px;background:var(--green-light);opacity:0.35;}
+.item{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:0.5px solid rgba(42,61,46,0.12);}
+.item:last-child{border-bottom:none;}
+.item-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:500;color:var(--text-dark);}
+.item-sub{font-size:11px;font-weight:300;color:var(--text-light);letter-spacing:0.5px;margin-top:1px;}
+.item-price{font-size:14px;font-weight:500;color:var(--green-mid);white-space:nowrap;margin-left:1.5rem;}
+.wine-price-bar{background:var(--green-deep);border-radius:8px;padding:14px 18px;margin-bottom:1.5rem;display:flex;flex-direction:column;}
+.wine-price-title{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--water);margin-bottom:10px;}
+.wine-price-row{display:grid;grid-template-columns:1fr 70px 70px 80px;gap:4px;font-size:12px;}
+.wine-price-row.header-row{color:var(--water);font-size:10px;letter-spacing:1px;border-bottom:0.5px solid rgba(255,255,255,0.1);padding-bottom:6px;margin-bottom:6px;}
+.wine-price-row span{color:var(--ivory);}
+.wine-price-row span.muted{color:var(--water);}
+.winery-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--text-dark);margin:1.75rem 0 0.25rem;}
+.winery-sub{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-light);margin-bottom:0.75rem;}
+.wine-item{display:grid;grid-template-columns:1fr auto auto;align-items:baseline;padding:11px 0;border-bottom:0.5px solid rgba(42,61,46,0.12);gap:12px;}
+.wine-item:last-child{border-bottom:none;}
+.wine-item-name{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-dark);}
+.wine-item-char{font-size:11px;color:var(--text-light);font-style:italic;white-space:nowrap;}
+.wine-item-price{font-size:13px;color:var(--green-mid);font-weight:500;text-align:right;white-space:nowrap;}
+.footer{background:var(--green-deep);padding:1.25rem 2rem;text-align:center;margin-top:2rem;}
+.footer p{font-size:10px;color:var(--water);letter-spacing:2px;text-transform:uppercase;}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-ornament">
+    <div class="ornament-line"></div>
+    <div class="ornament-diamond"></div>
+    <div class="ornament-line"></div>
+  </div>
+  <h1>Free Star</h1>
+  <p>Autocamp &nbsp;·&nbsp; Bufet &nbsp;·&nbsp; Pálava</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="sw('snidane',0)">Snídaně</div>
+  <div class="tab" onclick="sw('jidelni',1)">Jídelní lístek</div>
+  <div class="tab" onclick="sw('vino',2)">Vinná karta</div>
+</div>
+
+<div class="content">
+
+  <div class="section active" id="snidane">
+    <div class="cat-header"><span class="cat-label">Teplé snídaně</span><div class="cat-line"></div></div>
+    <div class="item"><div><div class="item-name">Toasty šunka + sýr</div></div><div class="item-price">45 Kč</div></div>
+    <div class="item"><div><div class="item-name">Párky</div><div class="item-sub">2 ks · s chlebem</div></div><div class="item-price">45 Kč</div></div>
+    <div class="item"><div><div class="item-name">Palačinky s Nutellou nebo džemem</div><div class="item-sub">2 ks</div></div><div class="item-price">75 Kč</div></div>
+    <div class="item"><div><div class="item-name">Palačinky s Nutellou nebo džemem</div><div class="item-sub">3 ks</div></div><div class="item-price">95 Kč</div></div>
+    <div class="cat-header"><span class="cat-label">Pečivo &amp; doplňky</span><div class="cat-line"></div></div>
+    <div class="item"><div><div class="item-name">Krajíc chleba / rohlík</div></div><div class="item-price">6 Kč</div></div>
+    <div class="item"><div><div class="item-name">Džem</div></div><div class="item-price">15 Kč</div></div>
+    <div class="item"><div><div class="item-name">Med</div></div><div class="item-price">15 Kč</div></div>
+    <div class="item"><div><div class="item-name">Máslo</div></div><div class="item-price">15 Kč</div></div>
+  </div>
+
+  <div class="section" id="jidelni">
+    <div class="cat-header"><span class="cat-label">Pizza</span><div class="cat-line"></div></div>
+    <div class="item"><div class="item-name">Šunková</div><div class="item-price">215 Kč</div></div>
+    <div class="item"><div class="item-name">Sýrová</div><div class="item-price">215 Kč</div></div>
+    <div class="item"><div class="item-name">Salami</div><div class="item-price">215 Kč</div></div>
+    <div class="item"><div class="item-name">Kuřecí</div><div class="item-price">225 Kč</div></div>
+    <div class="item"><div class="item-name">Žampionová</div><div class="item-price">215 Kč</div></div>
+    <div class="item"><div class="item-name">Hawaii</div><div class="item-price">220 Kč</div></div>
+    <div class="cat-header"><span class="cat-label">Něco k pivu</span><div class="cat-line"></div></div>
+    <div class="item"><div><div class="item-name">Pečené koleno</div><div class="item-sub">s oblohou</div></div><div class="item-price">269 Kč</div></div>
+    <div class="item"><div><div class="item-name">Pečená žebra</div><div class="item-sub">s oblohou</div></div><div class="item-price">245 Kč</div></div>
+    <div class="item"><div><div class="item-name">Cigára</div><div class="item-sub">2 ks · s oblohou</div></div><div class="item-price">139 Kč</div></div>
+    <div class="item"><div><div class="item-name">Nakládaný hermelín</div><div class="item-sub">s oblohou</div></div><div class="item-price">129 Kč</div></div>
+    <div class="item"><div><div class="item-name">Klobása ¼ m</div><div class="item-sub">s oblohou</div></div><div class="item-price">129 Kč</div></div>
+    <div class="item"><div><div class="item-name">Utopenec</div><div class="item-sub">s oblohou</div></div><div class="item-price">119 Kč</div></div>
+    <div class="item"><div><div class="item-name">Panini šunka + sýr</div></div><div class="item-price">115 Kč</div></div>
+    <div class="item"><div><div class="item-name">Panini hovězí + čedar</div></div><div class="item-price">115 Kč</div></div>
+    <div class="cat-header"><span class="cat-label">Smažené</span><div class="cat-line"></div></div>
+    <div class="item"><div class="item-name">Smažená kuřecí křídla</div><div class="item-price">179 Kč</div></div>
+    <div class="item"><div class="item-name">Smažený kuřecí řízek</div><div class="item-price">169 Kč</div></div>
+    <div class="item"><div class="item-name">Smažený sýr</div><div class="item-price">169 Kč</div></div>
+    <div class="item"><div class="item-name">Langoš</div><div class="item-price">94 Kč</div></div>
+    <div class="item"><div class="item-name">Batátové hranolky</div><div class="item-price">79 Kč</div></div>
+    <div class="item"><div class="item-name">Hranolky</div><div class="item-price">69 Kč</div></div>
+  </div>
+
+  <div class="section" id="vino">
+    <div class="wine-price-bar">
+      <div class="wine-price-title">Ceny na skleničku</div>
+      <div class="wine-price-row header-row">
+        <span class="muted">Kategorie</span>
+        <span class="muted" style="text-align:right">1 dcl</span>
+        <span class="muted" style="text-align:right">2 dcl</span>
+        <span class="muted" style="text-align:right">Lahev 0,7 l</span>
+      </div>
+      <div class="wine-price-row"><span style="color:var(--water)">Pozdní sběr</span><span style="text-align:right">50 Kč</span><span style="text-align:right">95 Kč</span><span style="color:var(--water);text-align:right">dle vína</span></div>
+      <div class="wine-price-row"><span style="color:var(--water)">Výběr z hroznů</span><span style="text-align:right">65 Kč</span><span style="text-align:right">110 Kč</span><span style="color:var(--water);text-align:right">dle vína</span></div>
+    </div>
+
+    <div class="winery-name">Vinařství Červinka</div>
+    <div class="winery-sub">Pozdní sběr &nbsp;·&nbsp; 0,7 l</div>
+    <div class="wine-item"><div><div class="wine-item-name">Rulandské šedé</div></div><div class="wine-item-char">polosladké</div><div class="wine-item-price">299 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Pálava</div></div><div class="wine-item-char">polosuchá</div><div class="wine-item-price">235 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Vlašský ryzlink</div></div><div class="wine-item-char">suché</div><div class="wine-item-price">235 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Veltlínské zelené</div></div><div class="wine-item-char">suché</div><div class="wine-item-price">235 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Tramín červený</div></div><div class="wine-item-char">suché</div><div class="wine-item-price">229 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Modrý portugal</div></div><div class="wine-item-char">suché</div><div class="wine-item-price">225 Kč</div></div>
+
+    <div class="winery-name" style="margin-top:2.5rem">Vinařství Svoboda</div>
+    <div class="winery-sub">Výběr z hroznů &nbsp;·&nbsp; 0,7 l</div>
+    <div class="wine-item"><div><div class="wine-item-name">Pálava V.H.</div></div><div class="wine-item-char">polosuché</div><div class="wine-item-price">269 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Chardonnay V.H.</div></div><div class="wine-item-char">polosuché</div><div class="wine-item-price">269 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Veltlínské zelené V.H.</div></div><div class="wine-item-char">polosuché</div><div class="wine-item-price">235 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">André rosé</div></div><div class="wine-item-char">polosladké</div><div class="wine-item-price">225 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Frizzante Chardonnay</div></div><div class="wine-item-char">polosuché</div><div class="wine-item-price">220 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Frizzante Frankovka</div></div><div class="wine-item-char">polosladké</div><div class="wine-item-price">220 Kč</div></div>
+    <div class="wine-item"><div><div class="wine-item-name">Frankovka V.H.</div></div><div class="wine-item-char">suché</div><div class="wine-item-price">215 Kč</div></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>Dobrou chuť &nbsp;·&nbsp; Autocamp Free Star &nbsp;·&nbsp; Pálava</p>
+</div>
+
+<script>
+function sw(id,idx){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tab')[idx].classList.add('active');
+}
+</script>
+</body>
+</html>
